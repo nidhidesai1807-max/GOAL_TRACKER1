@@ -24,7 +24,7 @@ function GoalForm({ onAddGoal, goals }) {
      return;
     }
     const totalWeightage =
-      goals.reduce(
+      (goals|| []).reduce(
         (sum, goal) => sum + Number(goal.weightage),
         0
       ) + Number(weightage);
