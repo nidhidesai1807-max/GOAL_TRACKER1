@@ -59,13 +59,13 @@ function Dashboard({ onLogout , backendMessage}) {
         <h2 className="text-2xl font-semibold mb-4">My Goals</h2>
         <p className="text-blue-600 font-semibold mb-4">
            Total Weightage:{" "}
-           {goals.reduce((sum, goal) => sum + Number(goal.weightage), 0)}%
+           {(goals || []).reduce((sum, goal) => sum + Number(goal.weightage), 0)}%
         </p>
 
         {goals.length === 0 ? (
           <p className="text-gray-500">No goals added yet.</p>
         ) : (
-          goals.map((goal, index) => (
+          (goals || []).map((goal, index) => (
             <div key={index} className="border p-4 rounded-lg mb-3">
               <h3 className="font-bold text-lg">{goal.title}</h3>
               <p className="text-sm text-blue-600 font-semibold">
@@ -154,7 +154,7 @@ function Dashboard({ onLogout , backendMessage}) {
       .then((data) => {
         alert(data.message);
 
-        const updatedGoals = goals.filter((g) => g.id !== goal.id);
+        const updatedGoals = (goals || []).filter((g) => g.id !== goal.id);
 
         setGoals(updatedGoals);
       })
@@ -184,7 +184,7 @@ function Dashboard({ onLogout , backendMessage}) {
                     })
                      .then((response) => response.json())
                      .then((data) => {
-                      const updatedGoals = goals.map((g) =>
+                      const updatedGoals = (goals || []).map((g) =>
                         g.id === goalId ? data.goal : g
                      );
 
@@ -207,7 +207,7 @@ function Dashboard({ onLogout , backendMessage}) {
         )}
         <button
            onClick={() => {
-            const totalWeightage = goals.reduce(
+            const totalWeightage = (goals || []).reduce(
              (sum, goal) => sum + Number(goal.weightage),
              0
             );
@@ -224,7 +224,7 @@ function Dashboard({ onLogout , backendMessage}) {
                 .then((data) => {
                    alert(data.message);
 
-                 const updatedGoals = goals.map((goal) => ({
+                 const updatedGoals = (goals || []).map((goal) => ({
                     ...goal,
                     approval_status:
                      goal.approval_status === "Draft" || !goal.approval_status
