@@ -251,7 +251,7 @@ function Dashboard({ onLogout , backendMessage}) {
           Submit Goals
         </button>
       </div>
-      <AnalyticsDashboard />
+     {/* <AnalyticsDashboard /> */}
       <Footer />
     </div>
   );
