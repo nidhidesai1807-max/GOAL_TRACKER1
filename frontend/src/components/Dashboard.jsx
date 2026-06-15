@@ -13,16 +13,22 @@ function Dashboard({ onLogout , backendMessage}) {
   fetch("https://goal-tracker-backend-lzkr.onrender.com/api/goals")
     .then((response) => response.json())
     .then((data) => {
-      setGoals(data.goals);
-    })
+  if (Array.isArray(data)) {
+    setGoals(data);
+  } else if (Array.isArray(data.goals)) {
+    setGoals(data.goals);
+  } else {
+    setGoals([]);
+  }
+})
     .catch((error) => {
       console.log("Error fetching goals:", error);
     });
     }, []);
 
   const addGoal = (goal) => {
-    setGoals([...goals, goal]);
-  };
+  setGoals([...(goals || []), goal]);
+};
 
   return (
     <div className="min-h-screen bg-gray-100 p-10">
@@ -62,7 +68,7 @@ function Dashboard({ onLogout , backendMessage}) {
            {(goals || []).reduce((sum, goal) => sum + Number(goal.weightage), 0)}%
         </p>
 
-        {goals.length === 0 ? (
+        {(goals || []).length === 0 ? (
           <p className="text-gray-500">No goals added yet.</p>
         ) : (
           (goals || []).map((goal, index) => (
