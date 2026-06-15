@@ -59,7 +59,7 @@ function Dashboard({ onLogout , backendMessage}) {
         </p>
       </div>
 
-      <GoalForm onAddGoal={addGoal} goals={goals} />
+    {/* <GoalForm onAddGoal={addGoal} goals={goals} /> */}
 
       <div className="bg-white p-6 rounded-2xl shadow-lg mt-6">
         <h2 className="text-2xl font-semibold mb-4">My Goals</h2>
@@ -251,7 +251,7 @@ function Dashboard({ onLogout , backendMessage}) {
           Submit Goals
         </button>
       </div>
-     {/* <AnalyticsDashboard /> */}
+      <AnalyticsDashboard /> 
       <Footer />
     </div>
   );
