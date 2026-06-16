@@ -53,10 +53,14 @@ function GoalForm({ onAddGoal, goals }) {
     })
        .then((response) => response.json())
 .then((data) => {
-  console.log("Backend response:", data);
+  console.log("POST response in GoalForm:", data);
 
-  alert("Goal Added Successfully!");
-
+  if (data.success && data.goal) {
+    onAddGoal(data.goal);
+    alert("Goal Added Successfully!");
+  } else {
+    alert("Goal saved, but response format was wrong");
+  }
 })
 
     alert("Goal Added!");
