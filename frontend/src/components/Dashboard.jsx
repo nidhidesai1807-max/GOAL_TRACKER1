@@ -28,11 +28,6 @@ useEffect(() => {
       setGoals([]);
     });
 }, []);
-    .catch((error) => {
-      console.log("Error fetching goals:", error);
-    });
-    }, []);
-
 const addGoal = (data) => {
   const newGoal = data.goal || data;
 
