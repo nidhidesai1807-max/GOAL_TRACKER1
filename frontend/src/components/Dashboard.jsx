@@ -9,18 +9,25 @@ import Footer from "./Footer";
 function Dashboard({ onLogout , backendMessage}) {
   const [goals, setGoals] = useState([]);
   const [editingGoalId, setEditingGoalId] = useState(null);
-  useEffect(() => {
+useEffect(() => {
   fetch("https://goal-tracker-backend-lzkr.onrender.com/api/goals")
     .then((response) => response.json())
     .then((data) => {
-  if (Array.isArray(data)) {
-    setGoals(data);
-  } else if (Array.isArray(data.goals)) {
-    setGoals(data.goals);
-  } else {
-    setGoals([]);
-  }
-})
+      console.log("Fetched goals:", data);
+
+      if (Array.isArray(data)) {
+        setGoals(data);
+      } else if (Array.isArray(data.goals)) {
+        setGoals(data.goals);
+      } else {
+        setGoals([]);
+      }
+    })
+    .catch((error) => {
+      console.log("Error fetching goals:", error);
+      setGoals([]);
+    });
+}, []);
     .catch((error) => {
       console.log("Error fetching goals:", error);
     });
