@@ -26,8 +26,13 @@ function Dashboard({ onLogout , backendMessage}) {
     });
     }, []);
 
-  const addGoal = (goal) => {
-  setGoals([...(goals || []), goal]);
+const addGoal = (data) => {
+  const newGoal = data.goal || data;
+
+  setGoals((prevGoals) => [
+    ...(Array.isArray(prevGoals) ? prevGoals : []),
+    newGoal,
+  ]);
 };
 
   return (
