@@ -53,20 +53,12 @@ function GoalForm({ onAddGoal, goals }) {
     })
        .then((response) => response.json())
 .then((data) => {
-  console.log(data);
+  console.log("Backend response:", data);
 
-  if (data.goal) {
-    onAddGoal(data.goal);
-    alert("Goal Added Successfully!");
-  } else {
-    console.log("Goal saved but data.goal missing:", data);
-    alert("Goal saved, but frontend did not receive goal correctly");
-  }
+  alert("Goal Added Successfully!");
+
+  window.location.reload();
 })
-.catch((error) => {
-  console.log("Frontend error:", error);
-  alert("Goal saved, but frontend had an error displaying it");
-});
 
     alert("Goal Added!");
 
