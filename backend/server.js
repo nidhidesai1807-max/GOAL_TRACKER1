@@ -104,9 +104,9 @@ app.post("/api/goals", async (req, res) => {
 });
 app.get("/api/goals", async (req, res) => {
   try {
-    const result = await pool.query(
-      "SELECT * FROM goals ORDER BY created_at DESC"
-    );
+   const result = await pool.query(
+  "SELECT * FROM goals ORDER BY id DESC"
+);
 
     res.json({
       success: true,
