@@ -28,10 +28,8 @@ useEffect(() => {
       setGoals([]);
     });
 }, []);
-const addGoal = (data) => {
-  console.log("Goal received in Dashboard:", data);
-
-  const newGoal = data.goal || data;
+const addGoal = (newGoal) => {
+  console.log("Goal received in Dashboard:", newGoal);
 
   if (!newGoal) {
     console.log("No goal received");
