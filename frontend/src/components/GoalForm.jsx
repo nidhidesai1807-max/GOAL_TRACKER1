@@ -57,7 +57,6 @@ function GoalForm({ onAddGoal, goals }) {
 
   alert("Goal Added Successfully!");
 
-  window.location.reload();
 })
 
     alert("Goal Added!");
