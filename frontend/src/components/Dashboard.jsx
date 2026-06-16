@@ -29,11 +29,18 @@ useEffect(() => {
     });
 }, []);
 const addGoal = (data) => {
+  console.log("Goal received in Dashboard:", data);
+
   const newGoal = data.goal || data;
 
+  if (!newGoal) {
+    console.log("No goal received");
+    return;
+  }
+
   setGoals((prevGoals) => [
-    ...(Array.isArray(prevGoals) ? prevGoals : []),
     newGoal,
+    ...(Array.isArray(prevGoals) ? prevGoals : []),
   ]);
 };
 
