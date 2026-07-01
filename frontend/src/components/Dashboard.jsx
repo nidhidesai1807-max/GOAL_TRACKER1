@@ -65,9 +65,10 @@ const addGoal = (newGoal) => {
         Logout
       </button>
 
-      <p className="mb-6 text-sm text-gray-400">
-      Last synced: {lastSync}
-      </p>
+      <p className="mb-6 text-sm text-gray-400 flex items-center gap-2">
+   <span className="w-2 h-2 rounded-full bg-green-500"></span>
+   Last synced: {lastSync}
+</p>
 
       <div className="bg-white p-6 rounded-2xl shadow-lg">
         <h2 className="text-2xl font-semibold mb-4">
