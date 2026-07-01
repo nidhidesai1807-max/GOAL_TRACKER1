@@ -8,6 +8,7 @@ import Footer from "./Footer";
 
 function Dashboard({ onLogout , backendMessage}) {
   const [goals, setGoals] = useState([]);
+  const [lastSync, setLastSync] = useState("");
   const [editingGoalId, setEditingGoalId] = useState(null);
 useEffect(() => {
   fetch("https://goal-tracker-backend-lzkr.onrender.com/api/goals")
@@ -22,7 +23,15 @@ useEffect(() => {
       } else {
         setGoals([]);
       }
+
+      setLastSync(
+  new Date().toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  })
+);
     })
+    
     .catch((error) => {
       console.log("Error fetching goals:", error);
       setGoals([]);
@@ -56,8 +65,8 @@ const addGoal = (newGoal) => {
         Logout
       </button>
 
-      <p className="mb-6 text-green-600 font-semibold">
-         Backend Status: {backendMessage}
+      <p className="mb-6 text-sm text-gray-400">
+      Last synced: {lastSync}
       </p>
 
       <div className="bg-white p-6 rounded-2xl shadow-lg">
